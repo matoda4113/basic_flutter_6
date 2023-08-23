@@ -1,8 +1,11 @@
+import 'package:basic_flutter_6/controller/DataController.dart';
 import 'package:basic_flutter_6/pages/MainPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
+
+  Get.put(DataController());
   runApp(const MyApp());
 }
 
