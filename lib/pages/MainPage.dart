@@ -1,6 +1,10 @@
 import 'package:basic_flutter_6/controller/DataController.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+
+import '../global/global.dart';
+import 'SettingPage.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -17,8 +21,44 @@ class _MainPageState extends State<MainPage> {
         builder: (controller) {
       return Scaffold(
         appBar: AppBar(title: Text("http 요청예제"),),
+
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                padding: EdgeInsets.zero,
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Image.network('https://cdn.pixabay.com/photo/2023/05/02/21/08/river-7966163_1280.png',fit: BoxFit.cover,),
+              ),
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Home'),
+                onTap: () {
+                  Get.back();
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Settings'),
+                onTap: () {
+                  Get.to(()=>SettingPage());
+                },
+              ),
+            ],
+          ),
+        ),
+        
         body: Column(
           children: [
+            GestureDetector(
+              onTap: (){
+                logger.e(dotenv.env['API_KEY']);
+              },
+              child: Text("sarantest"),
+            ),
             GestureDetector(
               onTap: () {
                 controller.getProductList();

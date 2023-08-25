@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../global/HttpService.dart';
+
 import '../model/ProductModel.dart';
 
 
@@ -13,10 +14,13 @@ class DataController extends GetxController {
 
   ProductModel? productModel;
 
+
+
   Future<bool> getProductList() async{
 
     try {
       ProductModel info =await httpService.getProductList();
+
       productModel = info;
       update();
       return true;
